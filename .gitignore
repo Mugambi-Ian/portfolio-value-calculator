@@ -3,3 +3,5 @@ DS-STORE
 build
 package-lock.json
 yarn.lock
+.env
+assets/*.csv
