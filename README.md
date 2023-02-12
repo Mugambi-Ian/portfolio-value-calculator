@@ -4,7 +4,7 @@ A command-line program that calculates the latest portfolio value for each token
 
 ##### Sample Video
 
-- Change the playback speed to x2 the application takes 3 minutes to pasre the csv sample using eight workers reading 2mb at a tim
+- Change the playback speed to x2 the application takes 3 minutes to pasre the csv sample using 8 workers reading 5mb at a time
 
 https://user-images.githubusercontent.com/46242846/218307176-3dc099ba-e8c4-4ffa-84cf-160ebb505cc4.mp4
 
