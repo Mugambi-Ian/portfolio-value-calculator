@@ -24,6 +24,14 @@ Then, you can run locally in development mode with live reload:
 npm run dev
 ```
 
+
+### Requirements
+
+- `MongoDB` locally configured
+- `.env` file with `MONGO_URI` `MONGO_DATABASE` `MONGO_COLLECTION` `CRYPTOCOMPARE_API_KEY` set
+- `transactions.csv` at path `\assets`
+
+
 ## Solution
 
 The application optimizes performance by dividing the `CSV_file` into manageable chunks and processing each chunk in a separate worker thread. The `indexCSVWorker` uses the `fs` library to break down the file based on the `CHUNK_SIZE` defined by the user. As the worker reads each chunk, it sends a message to the main thread indicating the end position of the chunk in the file. The main thread then calculates the start position for the next chunk and continues the process until the entire file is indexed. The main thread then launches a specified number of `writeGroup` workers at a time. These workers use the `csv-parser` library to parse the chunks  and store the values in a `MongoDB` collection. This goes on until the whole file is parsed. The portfolio value is calculated by executing aggregate queries on the `MongoDB` collection.
