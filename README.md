@@ -2,6 +2,13 @@
 
 A command-line program that calculates the latest portfolio value for each token in USD by processing a CSV file of transaction logs. The portfolio value is calculated by summing up the deposits and subtracting the withdrawals for each token. The program also enables users to retrieve the portfolio value for a specific token or on a specific date by passing in additional parameters.
 
+##### Sample Video
+
+- Change the playback speed to x2 the application takes 3 minutes to pasre the csv sample using eight workers reading 2mb at a tim
+
+https://user-images.githubusercontent.com/46242846/218307176-3dc099ba-e8c4-4ffa-84cf-160ebb505cc4.mp4
+
+
 
 ### Getting started
 
@@ -20,6 +27,11 @@ npm run dev
 ## Solution
 
 The application optimizes performance by dividing the `CSV_file` into manageable chunks and processing each chunk in a separate worker thread. The `indexCSVWorker` uses the `fs` library to break down the file based on the `CHUNK_SIZE` defined by the user. As the worker reads each chunk, it sends a message to the main thread indicating the end position of the chunk in the file. The main thread then calculates the start position for the next chunk and continues the process until the entire file is indexed. The main thread then launches a specified number of `writeGroup` workers at a time. These workers use the `csv-parser` library to parse the chunks  and store the values in a `MongoDB` collection. This goes on until the whole file is parsed. The portfolio value is calculated by executing aggregate queries on the `MongoDB` collection.
+
+## Additional Features
+
+- Progress Tracking
+- Cached Query Results
 
 ### File Structure
 - `app/index.ts`: The main program file that handles the calculation of the portfolio value.
@@ -56,3 +68,7 @@ When the application runs, it performs the following actions:
     - Spawns a worker to read the `CSV_PATH` in chunks determined by `CHUNK_SIZE` and returns the total number of records and bytes processed. This information is stored in a `CSVIndex` indicating the start and end (line and byte) of each chunk in the `CSV_FILE`.
     - Spawns X(`APP_WORKERS`) workers at a time to read values from the `CSV_FILE` at unique `start` and `end` positions determined by the `CSVIndex`. Each read is equal to `CHUNK_SIZE`. The workers then write the values to the database. Once all promises are resolved, return to step 5.
 
+
+### Extras
+
+I used a boilerplate I had earlier created for this project [NodeJS CLI App Boilerplate](https://github.com/Mugambi-Ian/NodeJS-CLI-App-Boilerplate---TypeScript). I ended upusing it to create tetris for CLI with it [Terminal Tetris](https://github.com/Mugambi-Ian/terminal-tetris)
