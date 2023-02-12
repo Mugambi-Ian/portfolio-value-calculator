@@ -28,7 +28,7 @@ npm run dev
 
 The application optimizes performance by dividing the `CSV_file` into manageable chunks and processing each chunk in a separate worker thread. The `indexCSVWorker` uses the `fs` library to break down the file based on the `CHUNK_SIZE` defined by the user. As the worker reads each chunk, it sends a message to the main thread indicating the end position of the chunk in the file. The main thread then calculates the start position for the next chunk and continues the process until the entire file is indexed. The main thread then launches a specified number of `writeGroup` workers at a time. These workers use the `csv-parser` library to parse the chunks  and store the values in a `MongoDB` collection. This goes on until the whole file is parsed. The portfolio value is calculated by executing aggregate queries on the `MongoDB` collection.
 
-## Additional Features
+### Additional Features
 
 - Progress Tracking
 - Cached Query Results
@@ -66,7 +66,7 @@ When the application runs, it performs the following actions:
 7. Executes `service.migrateRecords(APP_WORKERS, CHUNK_SIZE)`, a promise function that:
     - Resets the database collection
     - Spawns a worker to read the `CSV_PATH` in chunks determined by `CHUNK_SIZE` and returns the total number of records and bytes processed. This information is stored in a `CSVIndex` indicating the start and end (line and byte) of each chunk in the `CSV_FILE`.
-    - Spawns X(`APP_WORKERS`) workers at a time to read values from the `CSV_FILE` at unique `start` and `end` positions determined by the `CSVIndex`. Each read is equal to `CHUNK_SIZE`. The workers then write the values to the database. Once all promises are resolved, return to step 5.
+    - Spawns X(`APP_WORKERS`) workers at a time to read values from the `CSV_FILE` at unique `start` and `end` positions determined by the `CSVIndex`. Each read is equal to `CHUNK_SIZE`. The workers then write the values to the database. Once all promises are resolved, return to step 4.
 
 
 ### Extras
