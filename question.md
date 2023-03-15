@@ -1,7 +1,7 @@
 ## Question 1 - Programming
 _We're looking at your programming ability. It must not only work, it should be maintainable._
 
-Let us assume you are a crypto investor. You have made transactions over a period of time which is logged in a [CSV file](https://s3-ap-southeast-1.amazonaws.com/static.propine.com/transactions.csv.zip). Write a command line program that does the following
+Let us assume you are a crypto investor. You have made transactions over a period of time which is logged in a [CSV file](https://drive.google.com/file/d/1i5jHaOWgZ_EFIC3Zz3ztuGr3QiwUdCcA/view?usp=sharing). Write a command line program that does the following
 
  - Given no parameters, return the latest portfolio value per token in USD
  - Given a token, return the latest portfolio value for that token in USD
