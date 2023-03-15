@@ -1,3 +1,5 @@
+[question](/question.md)
+
 # Portfolio Value Calculator CLI
 
 A command-line program that calculates the latest portfolio value for each token in USD by processing a CSV file of transaction logs. The portfolio value is calculated by summing up the deposits and subtracting the withdrawals for each token. The program also enables users to retrieve the portfolio value for a specific token or on a specific date by passing in additional parameters.
